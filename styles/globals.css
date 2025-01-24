@@ -2,20 +2,224 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Font-Family Definitions */
+@font-face {
+  font-family: "Poppins Regular";
+  font-style: normal;
+  font-display: swap;
+  src: url(/fonts/Poppins-Regular.woff2) format("woff2");
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@font-face {
+  font-family: "Poppins Medium";
+  font-style: normal;
+  font-display: swap;
+  src: url(/fonts/Poppins-Medium.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "Poppins Light";
+  font-style: normal;
+  font-display: swap;
+  src: url(/fonts/Poppins-Light.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "Poppins ExtraBold";
+  font-style: normal;
+  font-display: swap;
+  src: url(/fonts/Poppins-ExtraBold.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "Poppins SemiBold";
+  font-style: normal;
+  font-display: swap;
+  src: url(/fonts/Poppins-SemiBold.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "Poppins Bold";
+  font-style: normal;
+  font-display: swap;
+  src: url(/fonts/Poppins-Bold.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "Poppins Black";
+  font-style: normal;
+  font-display: swap;
+  src: url(/fonts/Poppins-Black.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-display: swap;
+  src: url(/fonts/Montserrat.woff2) format("woff2");
+}
+
+
+/* Global Body Styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f9fafb;
+  overflow-x: hidden;
+}
+
+/* Media Query for filter-bar */
+@media (min-width: 470px) {
+  .filter-bar {
+    padding: 0 2.5rem;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+/* Container Hover Effects */
+.cont {
+  transition: transform 0.3s ease-out;
+}
+
+.cont:hover {
+  transform: scale(1.02);
+}
+
+/* Image Scaling and Opacity on Hover */
+.contImg {
+  transform: scale(2);
+  opacity: 1;
+  transition: transform 0.4s ease-out;
+  /* Transition for transform only */
+}
+
+.cont:hover .contImg {
+  transform: scale(1);
+  opacity: 0;
+  transition: transform 0.4s ease-out, opacity 0.2s ease-out 0.2s;
+  /* Delay for opacity */
+}
+
+/* Content Transformation on Hover */
+.contCont {
+  transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+}
+
+.cont:hover .contCont {
+  transform: translateY(20px);
+  opacity: 0;
+  transition: transform 0.2s ease-in-out, opacity 0.2s ease-out 0.1s;
+  /* Slight delay for opacity */
+}
+
+/* Video Display on Hover */
+.cont:hover .contVid {
+  display: block;
+}
+
+/* Card Animations */
+
+/* Animation 1 */
+@keyframes card1-entry {
+  from {
+    transform: rotate(-15deg) scale(0.8) skewX(10deg);
+    top: 50px;
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0deg) scale(1);
+    top: 0px;
+    opacity: 1;
+  }
+}
+
+@keyframes card1-exit {
+  from {
+    transform: rotate(0deg) scale(1);
+    top: 0px;
+    opacity: 1;
+  }
+  to {
+    transform: rotate(-15deg) scale(0.8) skewX(10deg);
+    top: 50px;
+    opacity: 0;
+  }
+}
+
+/* Animation 2 */
+@keyframes card2-entry {
+  from {
+    transform: scale(0.8);
+    top: 50px;
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    top: 0px;
+    opacity: 1;
+  }
+}
+
+@keyframes card2-exit {
+  from {
+    transform: scale(1);
+    top: 0px;
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.8);
+    top: 50px;
+    opacity: 0;
+  }
+}
+
+/* Animation 3 */
+@keyframes card3-entry {
+  from {
+    transform: rotate(15deg) scale(0.8) skewX(-10deg);
+    top: 50px;
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0deg) scale(1) skewX(0deg);
+    top: 0px;
+    opacity: 1;
+  }
+}
+
+@keyframes card3-exit {
+  from {
+    transform: rotate(0deg) scale(1) skewX(0deg);
+    top: 0px;
+    opacity: 1;
+  }
+  to {
+    transform: rotate(15deg) scale(0.8) skewX(-10deg);
+    top: 50px;
+    opacity: 0;
+  }
+}
+
+/* Classes for Animations-entry */
+.card1-entry {
+  animation: card1-entry 0.3s forwards 0.3s;
+}
+
+.card2-entry {
+  animation: card2-entry 0.3s forwards 0.3s;
+}
+
+.card3-entry {
+  animation: card3-entry 0.3s forwards 0.3s;
+}
+
+/* Classes for Animations-exit */
+.card1-exit {
+  animation: card1-exit 0.3s forwards;
+}
+
+.card2-exit {
+  animation: card2-exit 0.3s forwards;
+}
+
+.card3-exit {
+  animation: card3-exit 0.3s forwards;
 }
