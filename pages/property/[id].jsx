@@ -1,14 +1,20 @@
 // pages\property\[id].jsx
 "use client";
 
-import { propertyListings } from "../../data/dataPropertyHome";
-import { useParams } from "next/navigation";
 import React, { FC, useState } from "react";
 import QualipactSlider from "../../components/QualipactSlider"; // Import the QualipactSlider component
+import { useRouter } from "next/router";
+import { propertyListings } from "../../data/dataPropertyHome";
 
 // PropertyPage Component
 const PropertyPage = () => {
-  const { id } = useParams();
+  const router = useRouter();
+  const { id } = router.query; // Use `router.query` for Next.js
+
+  if (!id) {
+    return <div>Loading...</div>; // Or you can handle other loading states here
+  }
+
   let currentElement = propertyListings.find(
     (property) => property.id === Number(id)
   );
@@ -19,6 +25,7 @@ const PropertyPage = () => {
 
   return <PropertyCard property={currentElement} />;
 };
+
 
 const PropertyCard = ({ property }) => {
   const { title, rent, status, location, imageUrl } = property;
